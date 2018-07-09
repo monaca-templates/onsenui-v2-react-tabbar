@@ -13,20 +13,17 @@
     "react-onsenui": "~1.11.1"
   },
   "scripts": {
-    "start": "webpack-serve --mode development --open",
-    "dev": "webpack-dev-server --mode development --open",
+    "dev": "webpack-serve --open",
     "build": "webpack --mode production"
   },
   "devDependencies": {
-    "argv": "0.0.2",
-    "cssnano": "^4.0.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "cordova": "^7.1.0",
     "css-loader": "^1.0.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "cssnano": "^4.0.0",
     "file-loader": "^1.1.11",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
@@ -41,10 +38,7 @@
     "style-loader": "^0.21.0",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4",
-    "webpack-mode": "^1.0.1",
     "webpack-serve": "^1.0.4",
-    "websocket": "^1.0.26",
     "yargs": "^12.0.1"
   },
   "cordova": {

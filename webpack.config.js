@@ -4,16 +4,16 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const path = require("path");
-const mode = require('yargs').argv.mode;
-const devMode = mode !== 'production';
+const argvs = require('yargs').argv;
+const devMode = process.env.WEBPACK_SERVE || argvs.mode === 'development';
 
-
-let host = '0.0.0.0'; //@todo
-let port = '8086'; //@todo
-let protocol = 'http'; //@todo
-let publicPath = '/'; //@todo
+const DEFAULT_PORT = '8000';
+const host = process.env.MONACA_TERMINAL ? '0.0.0.0': ( argvs.host ? argvs.host : '0.0.0.0' );
+const port = process.env.MONACA_TERMINAL ? argvs.port: ( argvs.port ? argvs.port : DEFAULT_PORT );
+const protocol = process.env.MONACA_TERMINAL ? 'https' : 'http';
 
 let webpackConfig = {
+  mode: devMode ? 'development' : 'production',
   entry: {
     app: ['./src/main.jsx']
   },
@@ -112,13 +112,11 @@ let webpackConfig = {
 */
 if(devMode) {
 
-  // webpack-serve
-  webpackConfig.mode = 'development'; //@todo
   webpackConfig.serve = {
     port: port,
     host: host,
     dev: {
-      publicPath: publicPath,
+      publicPath: '/',
       stats: {
         colors: true,
         errorDetails: true,
@@ -131,34 +129,11 @@ if(devMode) {
     hot: true
   }
 
-  // webpack-dev-server
-  // webpackConfig.devtool = 'inline-source-map';
-  // webpackConfig.cache = true;
-  // webpackConfig.resolve.unsafeCache = true;
-  // webpackConfig.output.publicPath = '/';
+  let devPlugins = [
+    new webpack.LoaderOptionsPlugin({ debug: true })
+  ];
   
-  // webpackConfig.devServer = {
-  //   contentBase: './src/public',
-  //   host: host,
-  //   stats: {
-  //     colors: true
-  //   },
-  //   historyApiFallback: true,
-  //   inline: true,
-  //   hot: true,
-  //   port: port
-  // };
-
-  // webpackConfig.entry.app.unshift('webpack/hot/only-dev-server');
-  // webpackConfig.entry.app.unshift(`webpack-dev-server/client?${protocol}://${host}:${port}`);
-  // webpackConfig.entry.app.unshift('react-hot-loader/patch');
-
-  // let devPlugins = [
-    // new webpack.HotModuleReplacementPlugin(),
-  //   // new webpack.LoaderOptionsPlugin({ debug: true }),
-  // ];
-  
-  // webpackConfig.plugins = webpackConfig.plugins.concat( devPlugins　);
+  webpackConfig.plugins = webpackConfig.plugins.concat( devPlugins　);
 }
 
 module.exports = webpackConfig;
