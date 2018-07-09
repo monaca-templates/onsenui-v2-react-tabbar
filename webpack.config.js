@@ -8,12 +8,18 @@ const mode = require('yargs').argv.mode;
 const devMode = mode !== 'production';
 
 
+let host = '0.0.0.0'; //@todo
+let port = '8086'; //@todo
+let protocol = 'http'; //@todo
+let publicPath = '/'; //@todo
+
 let webpackConfig = {
-  entry: ['./src/main.jsx'],
+  entry: {
+    app: ['./src/main.jsx']
+  },
 
   output: {
     path: path.resolve(__dirname, 'www'),
-    // publicPath: '/',
     filename: '[name].js',
   },
 
@@ -105,34 +111,54 @@ let webpackConfig = {
 * Dev
 */
 if(devMode) {
-  webpackConfig.devtool = 'inline-source-map';
-  webpackConfig.cache = true;
-  webpackConfig.resolve.unsafeCache = true;
-  webpackConfig.output.publicPath = '/';
-  
-  webpackConfig.devServer = {
-    contentBase: './src/public',
-    host: '0.0.0.0',
-    stats: {
-      colors: true
+
+  // webpack-serve
+  webpackConfig.mode = 'development'; //@todo
+  webpackConfig.serve = {
+    port: port,
+    host: host,
+    dev: {
+      publicPath: publicPath,
+      stats: {
+        colors: true,
+        errorDetails: true,
+        performance: true,
+        source: true,
+        warnings: true,
+        builtAt: true,
+      }
     },
-    historyApiFallback: true,
-    inline: true,
-    hot: true,
-    port: 8086
-  };
+    hot: true
+  }
 
-  webpackConfig.entry.unshift('webpack/hot/only-dev-server');
-  webpackConfig.entry.unshift('webpack-dev-server/client?http://localhost:8086');
-  webpackConfig.entry.unshift('react-hot-loader/patch');
-
-  let devPlugins = [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.LoaderOptionsPlugin({ debug: true }),
-
-  ];
+  // webpack-dev-server
+  // webpackConfig.devtool = 'inline-source-map';
+  // webpackConfig.cache = true;
+  // webpackConfig.resolve.unsafeCache = true;
+  // webpackConfig.output.publicPath = '/';
   
-  webpackConfig.plugins = webpackConfig.plugins.concat( devPlugins　);
+  // webpackConfig.devServer = {
+  //   contentBase: './src/public',
+  //   host: host,
+  //   stats: {
+  //     colors: true
+  //   },
+  //   historyApiFallback: true,
+  //   inline: true,
+  //   hot: true,
+  //   port: port
+  // };
+
+  // webpackConfig.entry.app.unshift('webpack/hot/only-dev-server');
+  // webpackConfig.entry.app.unshift(`webpack-dev-server/client?${protocol}://${host}:${port}`);
+  // webpackConfig.entry.app.unshift('react-hot-loader/patch');
+
+  // let devPlugins = [
+    // new webpack.HotModuleReplacementPlugin(),
+  //   // new webpack.LoaderOptionsPlugin({ debug: true }),
+  // ];
+  
+  // webpackConfig.plugins = webpackConfig.plugins.concat( devPlugins　);
 }
 
 module.exports = webpackConfig;
