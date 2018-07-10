@@ -112,6 +112,8 @@ let webpackConfig = {
 */
 if(devMode) {
 
+  webpackConfig.devtool = 'eval'; // source-map is not really recommended - https://webpack.js.org/configuration/devtool/
+
   webpackConfig.serve = {
     port: port,
     host: host,

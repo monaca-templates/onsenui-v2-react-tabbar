@@ -14,7 +14,9 @@
   },
   "scripts": {
     "dev": "webpack-serve --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "build:watch": "webpack --watch --mode production",
+    "monaca:preview": "webpack --watch & webpack-serve --open"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
