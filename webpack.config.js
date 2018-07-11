@@ -117,7 +117,7 @@ if(devMode) {
   webpackConfig.serve = {
     port: port,
     host: host,
-    dev: {
+    devMiddleware: {
       publicPath: '/',
       stats: {
         colors: true,
@@ -128,7 +128,7 @@ if(devMode) {
         builtAt: true,
       }
     },
-    hot: true
+    hotClient: true
   }
 
   let devPlugins = [
