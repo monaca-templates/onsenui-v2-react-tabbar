@@ -10,11 +10,11 @@ export default class App extends React.Component {
     return [
       {
         content: <HomePage />,
-        tab: <Tab label='Home' icon='md-home' />
+        tab: <Tab label='Home' icon='md-home'/>
       },
       {
         content: <SettingsPage />,
-        tab: <Tab label='Settings' icon='md-settings' />
+        tab: <Tab label='Settings' icon='md-settings'/>
       }
     ]
   }
