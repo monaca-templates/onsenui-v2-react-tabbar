@@ -1,7 +1,5 @@
-import 'react-hot-loader/patch';
-import {AppContainer} from 'react-hot-loader';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from "react-dom/client";
 import ons from 'onsenui';
 
 // Onsen UI Styling and Icons
@@ -15,22 +13,9 @@ if (ons.platform.isIPhoneX()) {
   document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
 }
 
-const rootElement = document.getElementById('app');
-ReactDOM.render(
-  <AppContainer>
+const root = createRoot(document.getElementById('app'));
+root.render(
+  <React.StrictMode>
     <App />
-  </AppContainer>,
-  rootElement
+  </React.StrictMode>
 );
-
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
-    ReactDOM.render(
-      <AppContainer>
-         <NextApp />
-      </AppContainer>,
-      rootElement
-    );
-  });
-}

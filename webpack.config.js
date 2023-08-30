@@ -49,8 +49,7 @@ let webpackConfig = {
         use: [{
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: devMode ? ['react-hot-loader/babel'] : []
+            presets: ['@babel/preset-env', '@babel/preset-react']
           }
         }]
       },
