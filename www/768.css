@@ -922,12 +922,12 @@ h4, h5, h6 {
   markup: |
     <div class="range range--material">
       <input type="range" class="range__input range--material__input" min="0" max="100">
-      <!-- <input type="range" class="range__focus-ring range--material__focus-ring"> -->
+      \3c !-- <input type="range" class="range__focus-ring range--material__focus-ring"> -->
     </div>
 
     <div class="range range--material range--disabled">
       <input type="range" class="range__input range--material__input" disabled>
-      <!-- <input type="range" class="range__focus-ring range--material__focus-ring" disabled> -->
+      \3c !-- <input type="range" class="range__focus-ring range--material__focus-ring" disabled> -->
     </div>
 */
 .range--material {
@@ -1341,7 +1341,7 @@ h4, h5, h6 {
   category: Toolbar
   elements: ons-toolbar ons-toolbar-button
   markup: |
-    <!-- Prerequisite=This example use ionicons(http://ionicons.com) to display icons. -->
+    \3c !-- Prerequisite=This example use ionicons(http://ionicons.com) to display icons. -->
     <div class="toolbar">
       <div class="toolbar__left">
         <span class="toolbar-button toolbar-button--outline">
@@ -2501,7 +2501,7 @@ h4, h5, h6 {
   category: Tabbar
   elements: ons-tabbar ons-tab
   markup: |
-    <!-- Prerequisite=This example use ionicons(http://ionicons.com) to display icons. -->
+    \3c !-- Prerequisite=This example use ionicons(http://ionicons.com) to display icons. -->
     <div class="tabbar">
       <label class="tabbar__item">
         <input type="radio" name="tabbar-a" checked="checked">
@@ -2772,7 +2772,7 @@ h4, h5, h6 {
   category: Tabbar
   elements: ons-tabbar ons-tab
   markup: |
-    <!-- Prerequisite=This example use ionicons(http://ionicons.com) to display icons. -->
+    \3c !-- Prerequisite=This example use ionicons(http://ionicons.com) to display icons. -->
     <div class="tabbar">
       <label class="tabbar__item">
         <input type="radio" name="tabbar-b" checked="checked">
@@ -3083,7 +3083,7 @@ h4, h5, h6 {
   category: Toolbar Button
   elements: ons-toolbar-button
   markup: |
-    <!-- Prerequisite=This example use font-awesome(http://fortawesome.github.io/Font-Awesome/) to display icons. -->
+    \3c !-- Prerequisite=This example use font-awesome(http://fortawesome.github.io/Font-Awesome/) to display icons. -->
     <button class="toolbar-button">
       <i class="fa fa-bell" style="font-size:17px"></i>
     </button>
@@ -3151,7 +3151,7 @@ h4, h5, h6 {
   category: Toolbar Button
   elements: ons-toolbar-button
   markup: |
-    <!-- Prerequisite=This example use Material Design Iconic Font(http://zavoloklom.github.io/material-design-iconic-font/) to display icons. -->
+    \3c !-- Prerequisite=This example use Material Design Iconic Font(http://zavoloklom.github.io/material-design-iconic-font/) to display icons. -->
     <span class="toolbar-button toolbar-button--material">
       <i class="zmdi zmdi-menu"></i>
     </span>
@@ -7818,6 +7818,25 @@ ons-fab.fab--bottom__center, button.fab--bottom__center, .speed-dial.fab--bottom
   --iphonex-safe-area-inset-right-landscape: 44px;
   --iphonex-safe-area-inset-bottom-landscape: 21px;
   --iphonex-safe-area-inset-left-landscape: 44px;
+}
+@supports (padding: max(env(safe-area-inset-top, 0px), 0px)) {
+  @media (orientation: portrait) {
+    :root {
+      --iphonex-safe-area-inset-top-portrait: max(env(safe-area-inset-top, 0px), 44px);
+      --iphonex-safe-area-inset-right-portrait: env(safe-area-inset-right, 0px);
+      --iphonex-safe-area-inset-bottom-portrait: max(env(safe-area-inset-bottom, 0px), 34px);
+      --iphonex-safe-area-inset-left-portrait: env(safe-area-inset-left, 0px);
+    }
+  }
+
+  @media (orientation: landscape) {
+    :root {
+      --iphonex-safe-area-inset-top-landscape: env(safe-area-inset-top, 0px);
+      --iphonex-safe-area-inset-right-landscape: max(env(safe-area-inset-right, 0px), 44px);
+      --iphonex-safe-area-inset-bottom-landscape: max(env(safe-area-inset-bottom, 0px), 21px);
+      --iphonex-safe-area-inset-left-landscape: max(env(safe-area-inset-left, 0px), 44px);
+    }
+  }
 }
 /* @import './util.css'; */
 @media (orientation: landscape) {
